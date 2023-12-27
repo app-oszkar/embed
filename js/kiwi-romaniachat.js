@@ -1,9 +1,8 @@
 /* KiwiChat
  * https://kiwichat.eu.org
  * Embed helper script
- * v1.0.1
+ * v1.0.2
  */
-
 console.log('Kiwi RomaniaChat Embed Script');
 
 window.onload = function() {
@@ -18,16 +17,16 @@ window.onload = function() {
             /**
              * Getting if a device is a mobile
              */
-            var xs = (screen.width < 768);
+        var xs = (screen.width < 768);
             /**
              * Getting type & base URI
              */
-            var baseURI = "https://kiwi.romaniachat.eu";
+        var baseURI = "https://kiwi.romaniachat.eu";
             /**
              * Getting height
              */
-            var heightAuto = false;
-            var height;
+        var heightAuto = false;
+        var height;
             if (ins.hasAttribute('data-height')) {
                 height = parseInt(ins.getAttribute('data-height'));
             } else {
@@ -40,12 +39,10 @@ window.onload = function() {
             /**
              * Getting params
              */
-			      var port = '8443';
+	    var port = '8443';
             var theme = "default";
             var nick = null;
             var chan = null;
-            var realname = null;
-            var autojoin = null;
             if (ins.hasAttribute('data-theme')) {
                 theme = encodeURIComponent(ins.getAttribute('data-theme'));
             }
@@ -55,28 +52,16 @@ window.onload = function() {
             if (ins.hasAttribute('data-chan')) {
                 chan = ins.getAttribute('data-chan');
             }
-            if (ins.hasAttribute('data-autojoin')) {
-                autojoin = ins.getAttribute('data-autojoin');
-            }
-            if (ins.hasAttribute('data-realname')) {
-                realname = encodeURIComponent(ins.getAttribute('data-realname'));
-            }
             /**
              * Generating URI & load
              */
             var URI = baseURI;
-			      if (port) {
+			if (port) {
             URI = URI += ':' + port + '/';
               }
             URI = URI + "?theme=" + theme;
             if (nick) {
                 URI = URI + "&nick=" + nick;
-            }
-            if (autojoin) {
-                URI = URI + "&autojoin=" + autojoin;
-            }
-            if (realname) {
-                URI = URI + "&realname=" + realname;
             }
             if (chan) {
                 list = chan.split(',');
@@ -105,12 +90,12 @@ window.onload = function() {
                  */
                 var iframe = document.createElement('iframe');
                 iframe.setAttribute('id', insID);
-				iframe.setAttribute('width', '100%');
+		iframe.setAttribute('width', '100%');
                 iframe.setAttribute('style', 'border:0px;margin:0px;padding:0px;left:0;top:0;position:absolute;');
                 iframe.setAttribute('src', URI);
                 iframe.setAttribute('height', height);
                 if (heightAuto == false) {
-                    iframe.setAttribute('data-height', height);
+                iframe.setAttribute('data-height', height);
                 }
                 var parent = ins.parentNode;
                 parent.replaceChild(iframe, ins);
